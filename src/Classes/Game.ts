@@ -27,9 +27,8 @@ export class Game {
     }
 
 
-
     //  La fonction draw qui affiche un gameObject//ici ça ne va pas 
-    public draw(gameObject: GameObject) {
+    private draw(gameObject: GameObject) {
 
         this.context.drawImage(
             gameObject.getImage(),
@@ -39,9 +38,17 @@ export class Game {
             gameObject.getImage().height
 
         );
-
-
-
+    
+        gameObject.addEventListener("click", function (gameObject) {
+  console.log("coucou"); // logs the className of my_element
+  console.log(gameObject.currentTarget === this); // logs `true`
+});
+    }
+private loop(){
+        setInterval(()=>{
+            console.log("Frame!");
+        },10); 
+        // 1 frame/10ms ---> 100 frames/1000ms ---> 100 frames/1s
     }
 
 

@@ -21,6 +21,16 @@ var Game = /** @class */ (function () {
     //  La fonction draw qui affiche un gameObject//ici ça ne va pas 
     Game.prototype.draw = function (gameObject) {
         this.context.drawImage(gameObject.getImage(), gameObject.getPosition().x, gameObject.getPosition().y, gameObject.getImage().width, gameObject.getImage().height);
+        gameObject.addEventListener("click", function (gameObject) {
+            console.log("coucou"); // logs the className of my_element
+            console.log(gameObject.currentTarget === this); // logs `true`
+        });
+    };
+    Game.prototype.loop = function () {
+        setInterval(function () {
+            console.log("Frame!");
+        }, 10);
+        // 1 frame/10ms ---> 100 frames/1000ms ---> 100 frames/1s
     };
     return Game;
 }());
