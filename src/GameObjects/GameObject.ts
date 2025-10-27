@@ -28,28 +28,52 @@
 import { Position } from "../Classes/Position.js";
 import { Assets } from "../Classes/Assets.js";
 
-export class GameObject{
-    
-  private position : Position;
-    private image : HTMLImageElement;
-    
-    constructor(){
+export class GameObject {
+
+    private position: Position;
+    private image: HTMLImageElement;
+
+    constructor() {
         this.position = {
-            x : 0,
-            y : 0
+            x: 0,
+            y: 0
         };
         this.image = Assets.getDefaultImage();
+
+
+        this.position = {
+            x: 30,
+            y: 30
+        };
+        this.image = Assets.getPlayerImage();
+
+
+
+
     }
-     // Getter d'image et de position
-    public getImage() : HTMLImageElement{
+    // Getter d'image et de position
+    public getImage(): HTMLImageElement {
         return this.image;
     }
-    public getPosition() : Position{
+    public getPosition(): Position {
         return this.position;
     }
 
 
+
+    // Getter d'image et de position
+    public getPlayer(): HTMLImageElement {
+        return this.image;
+    }
+
+
+
+
 }
+
+
+
+
 
 
 
