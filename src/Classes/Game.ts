@@ -24,6 +24,7 @@ export class Game {
         const gameObject = new GameObject();
         // Je le dessine
         this.draw(gameObject);
+        this.loop();
     }
 
 
@@ -39,10 +40,10 @@ export class Game {
 
         );
     
-        gameObject.addEventListener("click", function (gameObject) {
-  console.log("coucou"); // logs the className of my_element
-  console.log(gameObject.currentTarget === this); // logs `true`
-});
+//         gameObject.addEventListener("click", function (gameObject) {
+//   console.log("coucou"); // logs the className of my_element
+//   console.log(gameObject.currentTarget === this); // logs `true`
+// });
     }
 private loop(){
         setInterval(()=>{

@@ -17,14 +17,15 @@ var Game = /** @class */ (function () {
         var gameObject = new GameObject();
         // Je le dessine
         this.draw(gameObject);
+        this.loop();
     };
     //  La fonction draw qui affiche un gameObject//ici ça ne va pas 
     Game.prototype.draw = function (gameObject) {
         this.context.drawImage(gameObject.getImage(), gameObject.getPosition().x, gameObject.getPosition().y, gameObject.getImage().width, gameObject.getImage().height);
-        gameObject.addEventListener("click", function (gameObject) {
-            console.log("coucou"); // logs the className of my_element
-            console.log(gameObject.currentTarget === this); // logs `true`
-        });
+        //         gameObject.addEventListener("click", function (gameObject) {
+        //   console.log("coucou"); // logs the className of my_element
+        //   console.log(gameObject.currentTarget === this); // logs `true`
+        // });
     };
     Game.prototype.loop = function () {
         setInterval(function () {
