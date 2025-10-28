@@ -13,7 +13,7 @@
 
 export class Assets{
     public static getDefaultImage(){
-        const image : HTMLImageElement = document.querySelector("img#asset_default");
+        const image : HTMLImageElement = document.querySelector("img.asset_default");
         if(image == null){
             throw Error("No assets found");
         }
@@ -21,7 +21,7 @@ export class Assets{
     }
 
     public static getPlayerImage(){
-        const image : HTMLImageElement = document.querySelector("imgasset_player");
+        const image : HTMLImageElement = document.querySelector("img.asset_player");
         if(image == null){
             throw Error("No assets found");
         }

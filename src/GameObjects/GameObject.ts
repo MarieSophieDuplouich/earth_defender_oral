@@ -26,30 +26,26 @@
 // La méthode Game.draw() prend en paramètre un GameObject et le dessine dans la balise canvas avec la méthode this.context.drawImage() :
 
 import { Position } from "../Classes/Position.js";
+import { Game } from "../Classes/Game.js";
 import { Assets } from "../Classes/Assets.js";
 
 export class GameObject {
 
     private position: Position;
     private image: HTMLImageElement;
+    private game: Game;
 
-    constructor() {
+    constructor(game: Game) {
         this.position = {
             x: 0,
             y: 0
         };
-        this.image = Assets.getDefaultImage();
 
 
-        this.position = {
-            x: 30,
-            y: 30
-        };
         this.image = Assets.getPlayerImage();
-
-
-
-
+        this.image = Assets.getDefaultImage();
+        this.game = game;
+        this.start();
     }
     // Getter d'image et de position
     public getImage(): HTMLImageElement {
@@ -65,16 +61,55 @@ export class GameObject {
     public getPlayer(): HTMLImageElement {
         return this.image;
     }
+    // Et ajoutez un getter public pour que les GameObjects puissent accéder au Game. j'ai compris qu'il falalit mettre getGame dans ce fichier pas dans 
+    //Game.ts
+    public getGame(): Game {
+        return this.game;
+    }
+
+    public setImage(image: HTMLImageElement) {
+        this.image = image;
+    }
+    public setPosition(position: Position) {
+        this.position = position;
+    }
+
+    protected start() {
 
 
 
+    }
+
+    protected update(){
+
+
+    }
 
 }
 
+// Effectuer une action à chaque frame
+// Nous voulons donner au Player la liberté de mettre à jour sa position à chaque frame du jeu.
+
+// Pour cela, nous allons, comme pour GameObject.start(), créer une méthode protected nommée GameObject.update() qui sera appelée à chaque frame dans le setInterval().
+
+// Dans GameObject.ts
+
+// protected update(){}
+// Il faut appeler cette méthode dans le setInterval de la méthode Game.loop(). La méthode GameObject.update() étant protected, il nous faut ajouter une méthode publique pour y accéder depuis Game.
 
 
 
 
+
+
+
+
+
+// Laissez la méthode start vide, car ce sera à une classe fille comme Player, Alien ou Laser de la remplir avec les actions qu'elles voudront effectuer.
+
+// Dans le cas de Player, il veut définir sa propre image et sa position en bas au centre de l'écran.
+
+// Implémentez donc la méthode start dans Player.
 
 
 
