@@ -80,10 +80,11 @@ export class GameObject {
 
     }
 
-    protected update(){
+  protected update(){}
+public callUpdate(){
+    this.update();
+}
 
-
-    }
 
 }
 

@@ -36,7 +36,9 @@ var GameObject = /** @class */ (function () {
     };
     GameObject.prototype.start = function () {
     };
-    GameObject.prototype.update = function () {
+    GameObject.prototype.update = function () { };
+    GameObject.prototype.callUpdate = function () {
+        this.update();
     };
     return GameObject;
 }());
