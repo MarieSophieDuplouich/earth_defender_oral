@@ -10,7 +10,12 @@ export class Player extends GameObject {
         });
 
     }
-
+ protected update(): void {
+        this.setPosition({
+            x : this.getPosition().x += this.speed*Input.getAxisX(),
+            y : this.getPosition().y
+        })
+    }
 
 }
 

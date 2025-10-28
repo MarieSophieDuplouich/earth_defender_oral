@@ -1,5 +1,6 @@
 import { GameObject } from "../GameObjects/GameObject.js";
 import { Player } from "../GameObjects/Player.js";
+import { Input } from "../Classes/Input.js";
 var Game = /** @class */ (function () {
     function Game() {
         this.CANVAS_WIDTH = 900;
@@ -19,15 +20,19 @@ var Game = /** @class */ (function () {
         var gameObject = new GameObject(this);
         // Je le dessine
         this.draw(gameObject);
-        this.loop();
         // J'instancie le Player avec new Player(this)
-        // codez ici...
         // Je le dessine avec this.draw
-        // codez ici...
         this.player = new Player(this);
         this.draw(this.player);
+        // Écoute les inputs
+        Input.listen();
+        // Démarre la boucle de jeu
+        this.loop();
+        // //alien
+        // this.alien = new Alien(this);
+        // this.draw(this.alien);
     };
-    //  La fonction draw qui affiche un gameObject//ici ça ne va pas 
+    //  La fonction draw qui affiche un gameObject
     Game.prototype.draw = function (gameObject) {
         this.context.drawImage(gameObject.getImage(), gameObject.getPosition().x, gameObject.getPosition().y, gameObject.getImage().width, gameObject.getImage().height);
         //         gameObject.addEventListener("click", function (gameObject) {
@@ -36,10 +41,18 @@ var Game = /** @class */ (function () {
         // });
     };
     Game.prototype.loop = function () {
+        var _this = this;
         setInterval(function () {
             console.log("Frame!");
-        }, 10);
-        // 1 frame/10ms ---> 100 frames/1000ms ---> 100 frames/1s
+            // J'efface la frame précédente.
+            _this.context.clearRect(0, 0, _this.CANVAS_WIDTH, _this.CANVAS_HEIGHT);
+            _this.context.fillStyle = "#141414";
+            _this.context.fillRect(0, 0, _this.CANVAS_WIDTH, _this.CANVAS_HEIGHT);
+            // Je redessine le joueur à chaque frame
+            _this.draw(_this.player);
+            // Je mets à jour le joueur
+            _this.player.callUpdate();
+        }, 10); // 1 frame/10ms ---> 100 frames/1000ms ---> 100 frames/1s
     };
     return Game;
 }());

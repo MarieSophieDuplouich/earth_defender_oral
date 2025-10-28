@@ -1,5 +1,6 @@
 import { GameObject } from "../GameObjects/GameObject.js";
 import { Player } from "../GameObjects/Player.js";
+ import { Input } from "../Classes/Input.js";
 
 export class Game {
 
@@ -15,9 +16,9 @@ export class Game {
         this.context = canvas.getContext("2d");
 
     }
-    private player : Player;
+    private player: Player;
     public start(): void {
-        this.context.clearRect(0,0,this.CANVAS_WIDTH,this.CANVAS_HEIGHT);
+        this.context.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         this.context.fillStyle = "#141414";
         this.context.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
         console.log("coucou");
@@ -26,22 +27,30 @@ export class Game {
         const gameObject = new GameObject(this);
         // Je le dessine
         this.draw(gameObject);
+      
+
+        // J'instancie le Player avec new Player(this)
+      
+
+        // Je le dessine avec this.draw
+   
+        this.player = new Player(this);
+        this.draw(this.player);
+        // Écoute les inputs
+
+        Input.listen();
+        // Démarre la boucle de jeu
         this.loop();
 
-
-         // J'instancie le Player avec new Player(this)
-    // codez ici...
-
-    // Je le dessine avec this.draw
-    // codez ici...
-    this.player =  new Player(this);
-    this.draw(this.player);
+        // //alien
+        // this.alien = new Alien(this);
+        // this.draw(this.alien);
 
     }
 
 
 
-    //  La fonction draw qui affiche un gameObject//ici ça ne va pas 
+    //  La fonction draw qui affiche un gameObject
     private draw(gameObject: GameObject) {
 
         this.context.drawImage(
@@ -52,19 +61,29 @@ export class Game {
             gameObject.getImage().height
 
         );
-    
-//         gameObject.addEventListener("click", function (gameObject) {
-//   console.log("coucou"); // logs the className of my_element
-//   console.log(gameObject.currentTarget === this); // logs `true`
-// });
-    }
-private loop(){
-        setInterval(()=>{
-            console.log("Frame!");
-        },10); 
-        // 1 frame/10ms ---> 100 frames/1000ms ---> 100 frames/1s
+
+        //         gameObject.addEventListener("click", function (gameObject) {
+        //   console.log("coucou"); // logs the className of my_element
+        //   console.log(gameObject.currentTarget === this); // logs `true`
+        // });
     }
 
+    private loop() {
+        setInterval(() => {
+            console.log("Frame!");
+            // J'efface la frame précédente.
+            this.context.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+            this.context.fillStyle = "#141414";
+            this.context.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+
+            // Je redessine le joueur à chaque frame
+            this.draw(this.player);
+
+            // Je mets à jour le joueur
+            this.player.callUpdate();
+
+        }, 10); // 1 frame/10ms ---> 100 frames/1000ms ---> 100 frames/1s
+    }
 
 }
 

@@ -27,6 +27,12 @@ var Player = /** @class */ (function (_super) {
             y: this.getGame().CANVAS_HEIGHT - this.getImage().height - 10
         });
     };
+    Player.prototype.update = function () {
+        this.setPosition({
+            x: this.getPosition().x += this.speed * Input.getAxisX(),
+            y: this.getPosition().y
+        });
+    };
     return Player;
 }(GameObject));
 export { Player };
